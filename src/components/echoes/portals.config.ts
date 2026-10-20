@@ -5,7 +5,6 @@ export const PORTALS = [
     tagline: "The Sunken Kingdom",
     color: "#4aa3ff",
     glow: "#7ec8ff",
-    angle: 0,
   },
   {
     id: "neotokyo",
@@ -13,7 +12,6 @@ export const PORTALS = [
     tagline: "The Neon Requiem",
     color: "#c47bff",
     glow: "#ff5cf0",
-    angle: (Math.PI * 2) / 5,
   },
   {
     id: "verdantis",
@@ -21,7 +19,6 @@ export const PORTALS = [
     tagline: "The Living Forest",
     color: "#6bffb0",
     glow: "#a8ffcf",
-    angle: (Math.PI * 4) / 5,
   },
   {
     id: "celestia",
@@ -29,7 +26,6 @@ export const PORTALS = [
     tagline: "The Sky Temples",
     color: "#ffd579",
     glow: "#ffe9a8",
-    angle: (Math.PI * 6) / 5,
   },
   {
     id: "unknown",
@@ -37,11 +33,32 @@ export const PORTALS = [
     tagline: "The Impossible",
     color: "#ffffff",
     glow: "#e0e6ff",
-    angle: (Math.PI * 8) / 5,
+  },
+    {
+    id: "mars",
+    name: "Mars",
+    tagline: "The Lost Martian Civilization",
+    color: "#ff5733",
+    glow: "#ff8c69",
+  },
+  {
+    id: "earth",
+    name: "Earth",
+    tagline: "The Cradle of Humanity",
+    color: "#36a3ff",
+    glow: "#7dd3fc",
+  },
+  {
+    id: "saturn",
+    name: "Saturn",
+    tagline: "The Rings of Eternity",
+    color: "#e6bd75",
+    glow: "#ffe4a3",
   },
 ] as const;
 
 export type PortalId = (typeof PORTALS)[number]["id"];
+
 export type PortalConfig = (typeof PORTALS)[number];
 
 export const getPortal = (id: PortalId): PortalConfig =>

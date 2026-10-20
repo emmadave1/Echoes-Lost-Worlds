@@ -42,7 +42,12 @@ export default function AudioManager({
     // Lazy-init audio context on first user-enabled state
     if (!ctxRef.current) {
       const AC =
-        (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext ??
+        (
+          window as unknown as {
+            AudioContext?: typeof AudioContext;
+            webkitAudioContext?: typeof AudioContext;
+          }
+        ).AudioContext ??
         (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AC) return;
       const ac = new AC();
@@ -119,7 +124,7 @@ function buildLayer(ac: AudioContext, dest: AudioNode, id: LayerId): Layer {
     freq: number,
     vol: number,
     detune = 0,
-    filterFreq?: number
+    filterFreq?: number,
   ) => {
     const osc = ac.createOscillator();
     osc.type = type;
@@ -274,6 +279,107 @@ function buildLayer(ac: AudioContext, dest: AudioNode, id: LayerId): Layer {
           lfo.stop();
         } catch {}
       });
+      break;
+    }
+    case "mars": {
+      // Deep planetary drones and distant desert winds.
+      addOsc("sine", 55, 0.16);
+      const drone = addOsc("triangle", 82.4, 0.07, -4, 500);
+      addNoise(0.035, 350);
+
+      // Slowly shift the second drone's pitch.
+      const lfo = ac.createOscillator();
+      lfo.type = "sine";
+      lfo.frequency.value = 0.08;
+
+      const lfoGain = ac.createGain();
+      lfoGain.gain.value = 4;
+
+      lfo.connect(lfoGain);
+      lfoGain.connect(drone.osc.detune);
+
+      lfo.start();
+
+      nodes.push(lfo, lfoGain);
+
+      stops.push(() => {
+        try {
+          lfo.stop();
+        } catch {}
+      });
+
+      break;
+    }
+
+    case "earth": {
+      // Earth: a warm, peaceful atmosphere with a gentle airy texture.
+      addOsc("sine", 130.81, 0.07);
+      addOsc("sine", 196, 0.045, 3);
+      addOsc("sine", 261.63, 0.025, -2);
+      addNoise(0.012, 900);
+
+      // Subtle movement in the atmospheric background.
+      const wind = addNoise(0.012, 450, "lowpass");
+
+      const lfo = ac.createOscillator();
+      lfo.type = "sine";
+      lfo.frequency.value = 0.12;
+
+      const lfoGain = ac.createGain();
+      lfoGain.gain.value = 0.006;
+
+      lfo.connect(lfoGain);
+      lfoGain.connect(wind.g.gain);
+
+      lfo.start();
+
+      nodes.push(lfo, lfoGain);
+
+      stops.push(() => {
+        try {
+          lfo.stop();
+        } catch {}
+      });
+
+      break;
+    }
+
+    case "saturn": {
+      // Saturn: ethereal golden tones and a deep, slowly shifting drone.
+      addOsc("sine", 73.42, 0.12);
+      addOsc("triangle", 110, 0.055, 5, 700);
+      addOsc("sine", 146.83, 0.035, -3);
+      addNoise(0.012, 500);
+
+      // Slow modulation gives the atmosphere a drifting quality.
+      const lfo = ac.createOscillator();
+      lfo.type = "sine";
+      lfo.frequency.value = 0.06;
+
+      const lfoGain = ac.createGain();
+      lfoGain.gain.value = 4;
+
+      lfo.connect(lfoGain);
+
+      // Modulate the third oscillator's pitch very gently.
+      const tone = nodes.find(
+        (node) => node instanceof OscillatorNode && node.frequency.value === 146.83,
+      ) as OscillatorNode | undefined;
+
+      if (tone) {
+        lfoGain.connect(tone.detune);
+      }
+
+      lfo.start();
+
+      nodes.push(lfo, lfoGain);
+
+      stops.push(() => {
+        try {
+          lfo.stop();
+        } catch {}
+      });
+
       break;
     }
   }

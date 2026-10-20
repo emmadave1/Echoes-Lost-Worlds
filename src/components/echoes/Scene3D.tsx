@@ -11,6 +11,9 @@ import NeoTokyo from "./scenes/NeoTokyo";
 import Verdantis from "./scenes/Verdantis";
 import Celestia from "./scenes/Celestia";
 import Unknown from "./scenes/Unknown";
+import Mars from "./scenes/Mars";
+import Earth from "./scenes/Earth";
+import Saturn from "./scenes/Saturn";
 import CameraRig from "./CameraRig";
 import { useSettings } from "./settings";
 
@@ -23,15 +26,29 @@ type Props = {
   onBegin: () => void;
 };
 
-export default function Scene3D({ stage, activePortal, hovered, onHoverPortal, onEnterPortal }: Props) {
+export default function Scene3D({
+  stage,
+  activePortal,
+  hovered,
+  onHoverPortal,
+  onEnterPortal,
+}: Props) {
   const { reduceMotion } = useSettings();
 
   return (
     <Canvas
       className="absolute inset-0"
-      dpr={[1, 2]}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 4, 22], fov: 55, near: 0.1, far: 400 }}
+      dpr={[1, 1.5]}
+      gl={{
+        antialias: true,
+        powerPreference: "high-performance",
+      }}
+      camera={{
+        position: [0, 4, 22],
+        fov: 55,
+        near: 0.1,
+        far: 400,
+      }}
     >
       <color attach="background" args={["#04050a"]} />
       <fog attach="fog" args={["#04050a", 40, 140]} />
@@ -53,7 +70,14 @@ export default function Scene3D({ stage, activePortal, hovered, onHoverPortal, o
         />
 
         {!reduceMotion && (
-          <Sparkles count={80} scale={[60, 30, 60]} size={2} speed={0.2} opacity={0.5} color="#ffe9a8" />
+          <Sparkles
+            count={80}
+            scale={[60, 30, 60]}
+            size={2}
+            speed={0.2}
+            opacity={0.5}
+            color="#ffe9a8"
+          />
         )}
 
         {(stage === "intro" || stage === "museum" || stage === "ending") && (
@@ -71,6 +95,9 @@ export default function Scene3D({ stage, activePortal, hovered, onHoverPortal, o
         {stage === "scene" && activePortal === "verdantis" && <Verdantis />}
         {stage === "scene" && activePortal === "celestia" && <Celestia />}
         {stage === "scene" && activePortal === "unknown" && <Unknown />}
+        {stage === "scene" && activePortal === "mars" && <Mars />}
+        {stage === "scene" && activePortal === "earth" && <Earth />}
+        {stage === "scene" && activePortal === "saturn" && <Saturn />}
 
         <Environment preset="night" />
       </Suspense>

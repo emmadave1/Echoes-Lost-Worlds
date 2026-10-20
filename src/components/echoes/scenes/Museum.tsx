@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float, MeshReflectorMaterial, Sparkles, Text } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
@@ -15,13 +15,22 @@ type Props = {
   stage: Stage;
 };
 
-const RADIUS = 12;
+const RADIUS = 14;
 
-export default function Museum({ hovered, onHoverPortal, onEnterPortal, interactive, stage }: Props) {
+export default function Museum({
+  hovered,
+  onHoverPortal,
+  onEnterPortal,
+  interactive,
+  stage,
+}: Props) {
   const orbRef = useRef<THREE.Mesh>(null!);
   const ringRef = useRef<THREE.Group>(null!);
   const ring2Ref = useRef<THREE.Group>(null!);
   const { reduceMotion } = useSettings();
+
+  const { size } = useThree();
+  const isMobile = size.width < 768;
 
   useFrame((state, dt) => {
     if (orbRef.current) {
@@ -34,11 +43,19 @@ export default function Museum({ hovered, onHoverPortal, onEnterPortal, interact
   });
 
   const pillars = useMemo(() => {
-    return Array.from({ length: 24 }).map((_, i) => {
-      const a = (i / 24) * Math.PI * 2;
-      return { x: Math.cos(a) * (RADIUS + 6), z: Math.sin(a) * (RADIUS + 6), h: 8 + (i % 3) * 2 };
+    const count = isMobile ? 8 : 24;
+    const pillarRadius = RADIUS + 10;
+
+    return Array.from({ length: count }).map((_, i) => {
+      const angle = (i / count) * Math.PI * 2;
+
+      return {
+        x: Math.cos(angle) * pillarRadius,
+        z: Math.sin(angle) * pillarRadius,
+        h: 8 + (i % 3) * 2,
+      };
     });
-  }, []);
+  }, [isMobile]);
 
   return (
     <group>
@@ -89,13 +106,23 @@ export default function Museum({ hovered, onHoverPortal, onEnterPortal, interact
       <group ref={ringRef} position={[0, 3.2, 0]} rotation={[Math.PI / 2.5, 0, 0]}>
         <mesh>
           <torusGeometry args={[2.2, 0.02, 12, 128]} />
-          <meshStandardMaterial color="#ffe9a8" emissive="#ffd579" emissiveIntensity={2} toneMapped={false} />
+          <meshStandardMaterial
+            color="#ffe9a8"
+            emissive="#ffd579"
+            emissiveIntensity={2}
+            toneMapped={false}
+          />
         </mesh>
       </group>
       <group ref={ring2Ref} position={[0, 3.2, 0]} rotation={[Math.PI / 3, Math.PI / 4, 0]}>
         <mesh>
           <torusGeometry args={[2.9, 0.015, 12, 128]} />
-          <meshStandardMaterial color="#e8d8ff" emissive="#c9b6ff" emissiveIntensity={1.4} toneMapped={false} />
+          <meshStandardMaterial
+            color="#e8d8ff"
+            emissive="#c9b6ff"
+            emissiveIntensity={1.4}
+            toneMapped={false}
+          />
         </mesh>
       </group>
 
@@ -116,9 +143,12 @@ export default function Museum({ hovered, onHoverPortal, onEnterPortal, interact
       ))}
 
       {/* Portals */}
-      {PORTALS.map((p) => {
-        const x = Math.cos(p.angle) * RADIUS;
-        const z = Math.sin(p.angle) * RADIUS;
+      {PORTALS.map((p, index) => {
+        const angle = (index / PORTALS.length) * Math.PI * 2;
+
+        const x = Math.cos(angle) * RADIUS;
+        const z = Math.sin(angle) * RADIUS;
+
         return (
           <Portal
             key={p.id}
@@ -133,7 +163,15 @@ export default function Museum({ hovered, onHoverPortal, onEnterPortal, interact
       })}
 
       {/* Floor dust */}
-      <Sparkles count={reduceMotion ? 60 : 200} scale={[40, 6, 40]} position={[0, 2, 0]} size={2} speed={reduceMotion ? 0.05 : 0.15} color="#fff8e0" opacity={0.5} />
+      <Sparkles
+        count={reduceMotion ? 60 : 200}
+        scale={[40, 6, 40]}
+        position={[0, 2, 0]}
+        size={2}
+        speed={reduceMotion ? 0.05 : 0.15}
+        color="#fff8e0"
+        opacity={0.5}
+      />
 
       {/* Title text in intro */}
       {stage === "intro" && (

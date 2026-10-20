@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import MobileWorldExplorer from "./ui/MobileWorldExplorer";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "./LoadingScreen";
 import Scene3D from "./Scene3D";
@@ -19,6 +20,23 @@ export default function EchoesApp() {
   const [hovered, setHovered] = useState<PortalId | null>(null);
   const [audioOn, setAudioOn] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const updateViewport = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateViewport);
+    };
+  }, []);
 
   useEffect(() => {
     if (visited.size === PORTALS.length && stage === "museum") {
@@ -105,27 +123,27 @@ export default function EchoesApp() {
         )}
 
         <AnimatePresence mode="wait">
-          {stage === "loading" && (
-            <LoadingScreen key="loading" onDone={() => setStage("intro")} />
-          )}
-          {stage === "intro" && (
-            <IntroOverlay key="intro" onBegin={() => setStage("museum")} />
-          )}
+          {stage === "loading" && <LoadingScreen key="loading" onDone={() => setStage("intro")} />}
+          {stage === "intro" && <IntroOverlay key="intro" onBegin={() => setStage("museum")} />}
           {stage === "scene" && activePortal && (
             <PortalHUD key={`hud-${activePortal}`} portalId={activePortal} onExit={exitPortal} />
           )}
-          {stage === "ending" && (
-            <EndingOverlay key="ending" onReplay={replay} />
-          )}
+          {stage === "ending" && <EndingOverlay key="ending" onReplay={replay} />}
         </AnimatePresence>
 
         {stage !== "loading" && (
-          <UIOverlay
-            stage={stage}
-            visitedCount={visited.size}
-            total={PORTALS.length}
-            onFullscreen={toggleFullscreen}
-          />
+          <>
+            {isMobile && stage === "museum" ? (
+              <MobileWorldExplorer onEnterPortal={enterPortal} visited={visited} />
+            ) : (
+              <UIOverlay
+                stage={stage}
+                visitedCount={visited.size}
+                total={PORTALS.length}
+                onFullscreen={toggleFullscreen}
+              />
+            )}
+          </>
         )}
 
         <AudioManager audioOn={audioOn} activePortal={activePortal} stage={stage} />
