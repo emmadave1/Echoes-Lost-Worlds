@@ -1,307 +1,167 @@
 # ECHOES — The Museum of Lost Civilizations
 
-An immersive, cinematic 3D experience exploring the remnants of forgotten worlds.
+**Journey through forgotten worlds. Discover the civilizations that time left behind.**
 
-**ECHOES** is an experimental interactive web experience that invites visitors to explore a mysterious museum containing portals to lost civilizations. Combining real-time 3D graphics, atmospheric environments, cinematic camera movements, and interactive storytelling, the project explores how the web can become a medium for immersive digital experiences.
+ECHOES is an immersive, interactive 3D experience that invites visitors to explore lost civilizations and mysterious worlds through a virtual museum. Built with modern web technologies, the project combines 3D environments, cinematic transitions, ambient audio, and interactive exploration to create a digital museum experience.
 
-Rather than following the conventions of a traditional website, ECHOES is designed as an interactive journey through imagined worlds, ancient mysteries, and futuristic landscapes.
+## Features
 
----
+* **Immersive 3D Museum:** Explore a virtual museum featuring interactive portals.
+* **Multiple Worlds:** Discover eight destinations, each with its own identity and atmosphere.
+* **Interactive Exploration:** Enter portals to explore different worlds.
+* **Mobile-Friendly Experience:** Browse destinations using a mobile-specific world explorer with swipe gestures.
+* **Ambient Audio:** Experience atmospheric soundscapes designed to complement exploration.
+* **Cinematic Introduction:** Begin your journey with an immersive introduction.
+* **Progress Tracking:** Keep track of the worlds you have discovered.
+* **Responsive Interface:** Designed to provide an engaging experience across supported screen sizes.
 
-## Overview
+## Worlds
 
-At the center of ECHOES stands an immense architectural monument surrounding a mysterious glowing orb. Five portals connect the museum to distinct civilizations, each with its own atmosphere, visual identity, and narrative.
+ECHOES currently features eight destinations:
 
-Visitors begin their journey at the museum, discover its portals, and explore the worlds hidden beyond them.
+| World     | Description                   |
+| --------- | ----------------------------- |
+| Atlantis  | The Sunken Kingdom            |
+| Neo Tokyo | The Neon Requiem              |
+| Verdantis | The Living Forest             |
+| Celestia  | The Sky Temples               |
+| Unknown   | The Impossible                |
+| Mars      | The Lost Martian Civilization |
+| Earth     | The Cradle of Humanity        |
+| Saturn    | The Rings of Eternity         |
 
-The experience draws inspiration from cinematic science fiction, surreal architecture, atmospheric games, and experimental 3D web design.
+## Built With
 
-### The Five Civilizations
-
-| Civilization | Theme | Visual Direction |
-| Atlantis | The lost underwater city | Ancient ruins, deep blue lighting, aquatic life, and drifting particles |
-| Neo Tokyo | A futuristic metropolis | Purple neon, holographic architecture, rain, and cyberpunk environments |
-| Verdantis | A forgotten natural world | Enchanted forests, monumental trees, glowing flora, and floating leaves |
-| Celestia | A civilization above the clouds | Floating islands, golden temples, waterfalls, and celestial landscapes |
-| Unknown | A world beyond comprehension | Impossible geometry, abstract structures, spatial distortions, and mysterious light |
-
-Each civilization is conceived as a distinct environment within a connected interactive experience.
-
----
-
-## Experience Design
-
-### The Introduction
-
-The experience opens in darkness, gradually revealing distant stars and a luminous portal.
-
-Cinematic typography introduces the museum before visitors enter the main environment.
-
-### The Museum
-
-The central environment is envisioned as a monumental structure combining classical architecture with futuristic design.
-
-Key visual elements include:
-
-- Massive architectural pillars.
-- Marble-inspired surfaces and gold accents.
-- Floating geometric structures.
-- A luminous central orb.
-- Circular architectural forms.
-- Atmospheric fog and floating particles.
-- Soft lighting and reflective surfaces.
-
-### Portal Exploration
-
-Five portals surround the central monument.
-
-Each portal has a unique visual identity and is designed to respond to user interaction through hover effects, animated energy, and cinematic camera movement.
-
-Entering a portal transitions the visitor from the museum into another civilization.
-
-### Cinematic Transitions
-
-Camera movements, scene transitions, particle effects, and animated lighting help connect the environments.
-
-The goal is to create a continuous sense of exploration rather than a collection of disconnected web pages.
-
-### The Ending
-
-The journey culminates in a return to the central museum.
-
-The central orb becomes the focus of the final sequence, leading to a closing reflection:
-
-> Every civilization began with imagination.
-> What will humanity build next?
-
----
-
-## Technology Stack
-
-ECHOES is built with modern web technologies for interactive graphics, animation, and component-based development.
-
-### Core
-
-- **React** — Component-based user interfaces.
-- **TypeScript** — Type safety and maintainable application code.
-- **Vite** — Development server and build tooling.
-- **TanStack Start** — Application framework and server-side rendering infrastructure.
-
-### 3D Graphics
-
-- **Three.js** — Real-time 3D rendering.
-- **React Three Fiber** — Declarative Three.js scenes in React.
-- **@react-three/drei** — Utilities and helpers for 3D environments.
-- **@react-three/postprocessing** — Post-processing effects for cinematic visuals.
-- **postprocessing** — Rendering effects and visual enhancements.
-
-### Animation
-
-- **GSAP** — Timeline-based animation and cinematic transitions.
-- **Framer Motion** — Interface animations and interaction feedback.
-
-### Styling and Interface
-
-- **Tailwind CSS** — Utility-first styling.
-- **Lucide React** — Interface icons.
-- **React Icons** — Additional icon collections.
-- **Leva** — Interactive development controls for tuning scene parameters.
-
-### Development Tools
-
-- **ESLint** — Code quality and linting.
-- **Prettier** — Consistent code formatting.
-- **TypeScript** — Static type checking.
-
----
+* **React** — User interface
+* **TypeScript** — Type-safe development
+* **Vite** — Development server and build tooling
+* **Three.js** — 3D graphics
+* **React Three Fiber** — React renderer for Three.js
+* **React Three Drei** — Helpers and abstractions for 3D scenes
+* **Framer Motion** — UI animations and transitions
+* **Tailwind CSS** — Styling
+* **Post-processing tools** — Visual effects
 
 ## Getting Started
 
-Follow these instructions to run the project locally.
-
 ### Prerequisites
 
-Install the following software before proceeding:
+Install the following before getting started:
 
-- [Node.js](https://nodejs.org/) — Use a version compatible with the project's Vite and TanStack Start dependencies.
-- npm — Included with Node.js.
-- Git — For version control.
+* [Node.js](https://nodejs.org/) — Use a version compatible with the project's dependencies.
+* npm, which is included with Node.js.
+* Git
 
 ### Installation
 
-***1. Clone the repository**
+1. Clone the repository:
 
-```bash
-git clone <your-repository-url>
-```
+   ```bash
+   git clone <https://github.com/emmadave1/Echoes-Lost-Worlds>
+   ```
 
-***2. Navigate to the project directory**
+2. Navigate into the project directory:
 
-```bash
-cd <repository-name>
-```
+   ```bash
+   cd Echoes-Lost-worlds
+   ```
 
-***3. Install dependencies**
+3. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-***4. Start the development server**
+4. Start the development server:
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
-Open the local URL displayed in your terminal to view the application.
+5. Open the local URL printed in your terminal to view the project.
 
 ### Available Scripts
 
-| Command | Description |
-| `npm run dev` | Starts the development server. |
-| `npm run build` | Creates a production build. |
-| `npm run build:dev` | Creates a development-mode build. |
-| `npm run preview` | Previews the production build locally. |
-| `npm run lint` | Runs ESLint to check code quality. |
-| `npm run format` | Formats project files using Prettier. |
+The following commands are typical for a Vite project. Check `package.json` to confirm the scripts available in this repository.
 
----
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the development server         |
+| `npm run build`   | Build the application for production |
+| `npm run preview` | Preview the production build         |
+| `npm run lint`    | Run linting, if configured           |
 
-## Project Architecture
+## Project Structure
 
-The application uses a component-based architecture to separate the interface, 3D environments, animations, and application logic.
-
-A suggested organization for the experience is:
+The project uses a component-based structure to separate the main application, 3D scenes, and user interface.
 
 ```text
-echoes-lost-worlds/
-├── public/
-│   └── assets/
-│
-├── src/
-│   ├── components/
-│   │   ├── ui/
-│   │   └── experience/
-│   │
-│   ├── scenes/
-│   │   ├── museum/
-│   │   ├── atlantis/
-│   │   ├── neo-tokyo/
-│   │   ├── verdantis/
-│   │   ├── celestia/
-│   │   └── unknown/
-│   │
-│   ├── hooks/
-│   ├── lib/
-│   ├── styles/
-│   ├── routes/
-│   ├── router.tsx
-│   ├── server.ts
-│   └── styles.css
-│
-├── vite.config.ts
-├── package.json
-├── tsconfig.json
-├── eslint.config.js
-├── .gitignore
-└── README.md
+src/
+├── components/
+│   └── echoes/
+│       ├── scenes/       # 3D environments and museum scene
+│       ├── ui/           # Interface overlays and navigation
+│       ├── portals.config.ts
+│       ├── EchoesApp.tsx
+│       ├── Scene3D.tsx
+│       ├── AudioManager.tsx
+│       └── settings.tsx
+├── App.tsx
+└── main.tsx
 ```
 
-This is an illustrative structure, not a claim about the repository's existing files. Adapt it to the actual application rather than creating empty directories solely to match the example.
+*Note: This is an illustrative overview. Your actual directory structure may differ.*
 
-### Architecture Principles
+## Mobile Experience
 
-- Keep scene components separate from interface components.
-- Reuse shared lighting, particle, and animation utilities where appropriate.
-- Keep camera movement and scene transitions coordinated.
-- Load expensive environments and assets only when needed.
-- Separate application state from individual scene implementations.
-- Keep development-only controls out of the production interface.
+ECHOES includes a dedicated mobile exploration interface to make discovering the worlds more comfortable on smaller screens.
 
----
+Mobile visitors can:
 
-## Performance Considerations
+* Swipe between destinations.
+* Navigate using Previous and Next controls.
+* View each world's name and description.
+* Enter a world directly.
+* Revisit previously discovered worlds.
 
-Real-time 3D graphics require careful resource management, particularly on mobile devices and lower-powered computers.
-
-Performance considerations for ECHOES include:
-
-- Lazy-loading civilization environments.
-- Using React Suspense where appropriate.
-- Optimizing 3D models and geometry.
-- Compressing textures and reducing unnecessary texture sizes.
-- Limiting expensive real-time lighting and post-processing effects.
-- Reusing materials and geometries where possible.
-- Managing animation loops and event listeners carefully.
-- Respecting reduced-motion preferences where practical.
-- Adapting rendering quality to device capabilities.
-- Providing a responsive interface across desktop, tablet, and mobile screens.
-
-A target of 60 FPS is desirable on capable hardware, but actual performance will depend on the scene complexity, rendering resolution, device, and browser.
-
----
-
-## Design Philosophy
-
-ECHOES explores the intersection of interactive storytelling, digital architecture, and real-time graphics.
-
-Its visual direction emphasizes:
-
-- Monumental scale.
-- Atmospheric lighting.
-- Restrained color palettes.
-- Slow, deliberate camera movement.
-- Subtle motion and environmental detail.
-- Minimal interface elements.
-- A sense of mystery and discovery.
-
-The experience is intended to feel closer to exploring a cinematic digital world than navigating a conventional website.
-
-### Visual Inspiration
-
-The project's creative direction draws inspiration from:
-
-- *Journey* — Atmospheric exploration and environmental storytelling.
-- *Monument Valley* — Surreal architecture and spatial illusions.
-- *Interstellar* — Cosmic scale and cinematic atmosphere.
-- *TRON: Legacy* — Luminous geometry and futuristic environments.
-- *Love, Death & Robots* — Experimental science-fiction worlds.
-- Apple Vision Pro — Immersive visual presentation.
-- Bruno Simon's portfolio — Playful, interactive 3D web experiences.
-- Active Theory — Experimental digital experiences and motion design.
-
-These works serve as creative references rather than assets included in the project.
-
----
-
-## Development Status
-
-ECHOES is an evolving creative development project.
-
-Its long-term direction includes a monumental central museum, five explorable civilizations, interactive portals, cinematic transitions, atmospheric effects, and a narrative ending.
-
-The implementation of individual environments and effects may evolve as development progresses.
-
----
+The desktop experience retains the interactive 3D museum.
 
 ## Contributing
 
-ECHOES is maintained as an independent creative development project.
+Contributions are welcome! You can help improve ECHOES by fixing bugs, refining the interface, improving mobile responsiveness, enhancing accessibility, or introducing new features.
 
-If you would like to suggest an improvement or discuss a potential collaboration, you can open an issue or contact the maintainer through their preferred communication channel.
+1. Fork the repository.
 
-Please check the repository's licensing terms before reusing any project code or assets.
+2. Create a feature branch:
 
----
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+3. Make your changes and test them.
+
+4. Commit your changes:
+
+   ```bash
+   git commit -m "Add your feature"
+   ```
+
+5. Push your branch:
+
+   ```bash
+   git push origin feature/your-feature
+   ```
+
+6. Open a pull request describing your changes.
+
+For significant changes, consider opening an issue first to discuss your proposal.
 
 ## License
 
-No open-source license is granted by this README.
+ECHOES is an open-source project.
 
-Unless a separate license is provided, the project's original code and creative assets remain subject to applicable copyright law. Contact the project owner for permission to reuse or redistribute them.
+## Vision
 
----
+ECHOES explores how immersive web technology can transform storytelling, digital exploration, and the way people experience lost civilizations and imagined worlds.
 
-***ECHOES — The Museum of Lost Civilizations**
-
-*Every lost world leaves an echo.*\
+**Enter the museum. Step through the portals. Discover what remains.**
