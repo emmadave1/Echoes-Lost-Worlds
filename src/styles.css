@@ -1,0 +1,78 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.08 0.01 260);
+  --foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.85 0.12 85);
+  --primary-foreground: oklch(0.1 0.01 260);
+  --accent-gold: oklch(0.82 0.14 82);
+  --accent-blue: oklch(0.72 0.14 235);
+  --accent-purple: oklch(0.65 0.2 300);
+  --accent-emerald: oklch(0.72 0.14 155);
+  --border: oklch(1 0 0 / 12%);
+  --muted: oklch(0.2 0.01 260);
+  --muted-foreground: oklch(0.7 0.01 260);
+}
+
+.dark { color-scheme: dark; }
+
+@layer base {
+  html, body, #root { height: 100%; background: #000; color: var(--color-foreground); }
+  body {
+    font-family: var(--font-sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { border-color: var(--color-border); }
+}
+
+@utility font-display { font-family: var(--font-display); font-weight: 300; letter-spacing: 0.04em; }
+@utility glass {
+  background: color-mix(in oklab, white 4%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
+}
+@utility text-glow-gold {
+  color: oklch(0.92 0.1 82);
+  text-shadow: 0 0 24px color-mix(in oklab, oklch(0.82 0.14 82) 60%, transparent);
+}
+
+@keyframes echoes-float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-6px) }
+}
+@utility animate-float { animation: echoes-float 6s ease-in-out infinite; }
+
+@keyframes echoes-particle-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
+}
+@utility animate-drift { animation: echoes-particle-drift linear infinite; }
