@@ -57,7 +57,7 @@ Install the following before getting started:
 1. Clone the repository:
 
    ```bash
-   git clone <YOUR_REPOSITORY_URL>
+   git clone <https://github.com/emmadave1/Echoes-Lost-Worlds>
    ```
 
 2. Navigate into the project directory:
